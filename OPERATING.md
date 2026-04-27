@@ -204,6 +204,22 @@ Do not stop for:
 - Action-discipline applications
 - Routine reviewer findings
 
+### When stopping, surface only the decision
+
+The user sees only what they need to decide. Banned in stopping messages:
+- Synthesis tables of all reviewer findings
+- Lists of autonomous actions you plan to take
+- Round summaries
+- Cluster overviews
+- Anything the user does not need to act on
+
+Allowed in stopping messages:
+- The decision itself with concise context
+- MCQ options with pros/cons and recommendation per format below
+- Nothing else
+
+After the user picks, resume autonomously without re-narrating what you will do next. Just do it.
+
 ### MCQ format when stopping
 
 ```
