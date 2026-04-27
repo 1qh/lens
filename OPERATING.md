@@ -67,7 +67,17 @@ The moment any project code lands (foundation app or otherwise), the next round'
 
 ## Round mode
 
-Every round is full per-round-exhaustive. No light/deep tiers. Token cost is not a concern. Apply every phase of [BRIEF](BRIEF.md), every auditor, the adversarial peer, three-scenario premortem, 2-3 stress tests. See [parallel-coverage](procedure/parallel-coverage.md).
+Every round is full per-round-exhaustive. No light/deep tiers. Token cost is not a concern.
+
+Mode selection is driven by target size:
+
+- **Single full-context (default for small targets)**: one reviewer reads the entire target every round. Fresh-eyes still — never sees prior rounds, never sees lens. No fixed persona, no fixed theme, no fixed stress-test slots. Reviewer is told to be exhaustive and unbiased: cover every doc, every concern axis, every failure mode, surface as many concerns as possible without narrowing to any single lens. Use [BRIEF-exhaustive](BRIEF-exhaustive.md) instead of the partitioned BRIEF. User adaptively redirects between rounds if a thread needs deeper attention.
+
+- **Parallel partitioned (for targets exceeding one reviewer's context)**: standard [BRIEF](BRIEF.md) with persona/theme/stress-test, [parallel-coverage](procedure/parallel-coverage.md), adversarial peer per round.
+
+- **Mixed code + docs**: activated the moment project code lands per "Code-review pivot" below.
+
+Auditor pair (rule + fact) applies in every mode. Severity calibration, disqualifier list, evidence rules, banned phrases stay consistent across modes.
 
 ## Vacuous-criterion rules
 
