@@ -11,18 +11,45 @@ You (Claude, loop driver) must read every file in this repo yourself. Do not spa
 ```mermaid
 flowchart TD
     Step1[OPERATING this file] --> Step2[PHILOSOPHY]
-    Step2 --> Step3[BRIEF, AUDIT, POST-TERMINATOR, META-REVIEW, COMMIT-HYGIENE]
-    Step3 --> Step4[procedure all files]
-    Step4 --> Step5[libraries all files]
-    Step5 --> Step6[logs README]
-    Step6 --> Ready[Ready to drive a round]
+    Step2 --> Step3[GLOSSARY]
+    Step3 --> Step4[BRIEF, AUDIT, POST-TERMINATOR, META-REVIEW, COMMIT-HYGIENE]
+    Step4 --> Step5[procedure all files]
+    Step5 --> Step6[libraries all files]
+    Step6 --> Step7[logs README]
+    Step7 --> Ready[Ready to drive a round]
 ```
 
 After reading, you have full strategy context. Drive a round.
 
+## What user might say to invoke
+
+- "look at ~/lens, you'll know what's next"
+- "run a round"
+- "review my project at <path>"
+- "review book" / "review <project name>"
+- "continue the loop"
+- "start a fresh round for <project>"
+
+If the project path is not stated, ask. Lens reviews a project repo somewhere on disk. The canonical example project is `~/tc/book`.
+
+## Project prerequisites
+
+The target project must have its own doc set with concept-level rules (PHILOSOPHY-style), system view (ARCHITECTURE-style), decisions (ADR-style). If the project has no review-able docs, lens has nothing to do; tell the user.
+
+## First round vs continuing round
+
+- **First round** for a project: no prior digest, no recurrence index, no calibration history. Create `logs/<project>/` subdirs as needed. Skip "calibration probe caught" termination criterion as vacuously satisfied. Write the first digest at end of round.
+- **Continuing round**: read most recent `logs/<project>/digest.md` first to know what topics are predicted; use that to inform planning.
+
 ## Round mode
 
 Every round is full per-round-exhaustive. No light/deep tiers. Token cost is not a concern. Apply every phase of [BRIEF](BRIEF.md), every auditor, the adversarial peer, three-scenario premortem, 2-3 stress tests. See [parallel-coverage](procedure/parallel-coverage.md).
+
+## Vacuous-criterion rules
+
+For [termination](procedure/termination.md):
+- Calibration-probe-caught criterion is satisfied vacuously if no probe was inserted in the terminating rounds.
+- Two-provider criterion: if only one provider is available, termination requires four consecutive nit-only rounds instead of two, with explicit caveat in the round log.
 
 ## Round execution
 
@@ -118,6 +145,29 @@ Per [procedure/termination](procedure/termination.md). If terminated, declare lo
 - **WebSearch / WebFetch** are available in subagents (general-purpose). Auditor (fact-check) uses these to fetch URLs. Brief explicitly tells reviewers to use web tools for verification.
 - Loop driver (you) does not personally fact-check after auditors return. Trust the auditor verdicts.
 - Loop driver edits project docs and commits using Edit / Write / Bash tools.
+
+## Concrete Agent tool invocation
+
+For each slot, one Agent tool call. All parallel calls in a single message:
+
+- `subagent_type`: "general-purpose"
+- `description`: short label like "Auth scope review" or "Fact-check primary 3"
+- `prompt`: the filled brief content as a single string. Include all phases, the persona block, the chosen theme, the stress tests, and any variant prefix.
+
+Auditors receive the primary's report inside their prompt. Pass the primary's report as a section of the prompt body.
+
+Post-terminator and meta-review use the same Agent tool with the corresponding brief from POST-TERMINATOR or META-REVIEW.
+
+## Mermaid render check on project edits
+
+When applying fixes to project docs, run `bash ~/lens/scripts/check-mermaid.sh <changed-files>` after edits and before commit. If the project has its own copy of the script that's fine; otherwise use lens's. Failure blocks commit.
+
+## Recovery rules
+
+- **Reviewer agent errors**: retry once with the same brief. Second failure: drop that slot for this round, log the failure under provider-bias, continue with remaining slots.
+- **Auditor errors**: same retry rule. If both retries fail, treat the unaudited finding as fabrication-risk and drop.
+- **User pauses round mid-flight**: leave any partial state in the lens logs but do not commit project changes until all slots return. On resume, restart from the last completed step.
+- **Project repo in broken state** (uncommitted changes, conflicts): refuse to start a round. Report state and ask the user.
 
 ## Filled brief example
 

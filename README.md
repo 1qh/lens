@@ -25,6 +25,7 @@ mindmap
     Foundations
       OPERATING
       PHILOSOPHY
+      GLOSSARY
       BRIEF
       AUDIT
       POST-TERMINATOR
@@ -56,6 +57,7 @@ mindmap
 Files:
 - [OPERATING](OPERATING.md) — start here if running a round
 - [PHILOSOPHY](PHILOSOPHY.md) — values
+- [GLOSSARY](GLOSSARY.md) — lens-specific terms
 - [BRIEF](BRIEF.md) — primary reviewer brief template
 - [AUDIT](AUDIT.md) — auditor brief
 - [POST-TERMINATOR](POST-TERMINATOR.md) — verdict-disprove brief
