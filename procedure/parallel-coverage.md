@@ -5,10 +5,10 @@ Parallel non-overlapping reviewers cover the doc surface in one round.
 ```mermaid
 flowchart LR
     Round[Round start] --> Partition[Pick partition scheme]
-    Partition --> Slots[Assign persona+theme+stress-tests<br/>per slot]
-    Slots --> R1[Reviewer 1<br/>topic A]
-    Slots --> R2[Reviewer 2<br/>topic B]
-    Slots --> Rn[Reviewer N<br/>topic N]
+    Partition --> Slots[Assign persona+theme+stress-tests per slot]
+    Slots --> R1[Reviewer 1 topic A]
+    Slots --> R2[Reviewer 2 topic B]
+    Slots --> Rn[Reviewer N topic N]
     R1 --> A1[Auditor 1]
     R2 --> A2[Auditor 2]
     Rn --> An[Auditor N]

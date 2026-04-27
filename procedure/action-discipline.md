@@ -7,8 +7,8 @@ flowchart TD
     Finding[Confirmed finding] --> Decide
     Decide --> Fix[Fix in doc / add ADR / redesign]
     Decide --> NonGoal[Add explicit non-goal in owning doc]
-    Decide --> Limitation[Add known limitation in owning doc<br/>with revisit trigger]
-    Decide --> Deferred[Document deferred decision in owning doc<br/>with trigger condition]
+    Decide --> Limitation[Add known limitation in owning doc with revisit trigger]
+    Decide --> Deferred[Document deferred decision in owning doc with trigger condition]
     Fix --> Commit[Normal commit, hygiene-compliant]
     NonGoal --> Commit
     Limitation --> Commit

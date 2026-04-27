@@ -34,6 +34,7 @@ mindmap
       Prose ≤ 2 sentences
       Concept names only, no code specifics
       No numbering anywhere
+      Mermaid render-safe on GitHub no br tags
 ```
 
 ## Decision filter for any change to lens itself
