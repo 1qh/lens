@@ -57,6 +57,10 @@ The target must contain artifacts the reviewer can read. For doc reviews: the do
 - **First round** for a project: no prior digest, no recurrence index, no calibration history. Create `logs/<project>/` subdirs as needed. Skip "calibration probe caught" termination criterion as vacuously satisfied. Write the first digest at end of round.
 - **Continuing round**: read most recent `logs/<project>/digest.md` first to know what topics are predicted; use that to inform planning.
 
+## Code-review pivot
+
+The moment any project code lands (foundation app or otherwise), the next round's partition activates `Mixed code + docs` from `libraries/partitions.md`. One slot reads only docs, one only code, auditors compare drift. Doc-only rounds resume only if no code touched in the period. Prevents weeks of doc-perfection while reality diverges.
+
 ## Round mode
 
 Every round is full per-round-exhaustive. No light/deep tiers. Token cost is not a concern. Apply every phase of [BRIEF](BRIEF.md), every auditor, the adversarial peer, three-scenario premortem, 2-3 stress tests. See [parallel-coverage](procedure/parallel-coverage.md).

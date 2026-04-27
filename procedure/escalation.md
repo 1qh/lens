@@ -25,3 +25,7 @@ Three recurrences despite prior resolutions means one of: the resolution princip
 ## Counter rules
 
 Successful resolution clears the counter. New genuine recurrence after reset starts at one. Counter is per topic per project, not global.
+
+## Defeat-list armor audit
+
+Every 5 project rounds, spawn a meta-reviewer scoped only to rules whose defeat-the-non-goal lists expanded ≥2 times across rounds. Asks: is the rule still right, or has it just gotten louder? Closed-loop trap — recurrence-rewrite turning healthy criticism into thicker armor — is what this audit catches. Outcome applies action discipline; rules that fail audit get rewritten or removed, not armored further.
