@@ -186,6 +186,52 @@ Replace `[PERSONA]`, `[SCOPE]`, `[THEME]`, `[STRESS_TESTS]` in BRIEF accordingly
 - **Skipping the round digest.** Convergence depends on it. Write per [procedure/convergence](procedure/convergence.md).
 - **Personally fact-checking after auditors.** Wastes effort. Trust the auditor pair.
 
+## Autonomous workflow
+
+The loop driver runs autonomously round after round until termination. Do not report progress between rounds. Do not narrate. Just keep looping.
+
+### When to stop and ask
+
+Stop only when a decision genuinely requires the user. Examples:
+- Strategic pivots (scope, target market, hosting choice the team didn't pre-commit to)
+- Trade-offs the team has not previously expressed a philosophy on
+- Cost / time / business decisions outside engineering
+- Conflicts between two prior locked decisions that need resolving
+
+Do not stop for:
+- Tech decisions covered by philosophy or prior locks
+- Doc-level cleanups
+- Action-discipline applications
+- Routine reviewer findings
+
+### MCQ format when stopping
+
+```
+# Concise question
+
+Brief context (1-2 lines).
+
+## A) Option A
+- pros
+- cons
+
+## B) Option B
+- pros
+- cons
+
+## My recommendation: X
+
+Why X over alternatives in one sentence.
+
+Pick A / B / ...?
+```
+
+Always include pros, cons, your recommendation, and a one-sentence rationale. Skip ceremony.
+
+### When termination is reached
+
+Report once at termination. Summarize: rounds run, total findings resolved, top recurrence-resolved topics, any caveats. Then stop.
+
 ## Resuming after compact or fresh session
 
 If the user says "look at ~/lens, you'll know what's next", do:
