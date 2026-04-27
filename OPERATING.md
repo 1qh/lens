@@ -57,6 +57,10 @@ The target must contain artifacts the reviewer can read. For doc reviews: the do
 - **First round** for a project: no prior digest, no recurrence index, no calibration history. Create `logs/<project>/` subdirs as needed. Skip "calibration probe caught" termination criterion as vacuously satisfied. Write the first digest at end of round.
 - **Continuing round**: read most recent `logs/<project>/digest.md` first to know what topics are predicted; use that to inform planning.
 
+## Theme + scope preview before spawning
+
+Before spawning reviewer agents for a round, surface to the user the chosen partition scheme, theme, stress-tests, and personas. One short message. User redirects upfront if any pick is wrong. Avoids burning a round on a theme that produces over-reach (e.g., deletion theme over-reaching on reasoning prose). Resume autonomously after user ack.
+
 ## Code-review pivot
 
 The moment any project code lands (foundation app or otherwise), the next round's partition activates `Mixed code + docs` from `libraries/partitions.md`. One slot reads only docs, one only code, auditors compare drift. Doc-only rounds resume only if no code touched in the period. Prevents weeks of doc-perfection while reality diverges.
