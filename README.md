@@ -39,7 +39,11 @@ mindmap
       action-discipline
       cross-provider
       recurrence-index
+      escalation
       termination
+      empirical-signal
+      reviewer-model-selection
+      adversarial-full-context-peer
     Logs
       project rounds
 ```
@@ -52,7 +56,7 @@ Files:
 - [META-REVIEW](META-REVIEW.md) — strategy meta-review brief
 - [COMMIT-HYGIENE](COMMIT-HYGIENE.md) — commit message rules
 - libraries: [personas](libraries/personas.md), [themes](libraries/themes.md), [stress-tests](libraries/stress-tests.md), [partitions](libraries/partitions.md), [calibration-probes](libraries/calibration-probes.md)
-- procedure: [round-flow](procedure/round-flow.md), [parallel-coverage](procedure/parallel-coverage.md), [action-discipline](procedure/action-discipline.md), [cross-provider](procedure/cross-provider.md), [recurrence-index](procedure/recurrence-index.md), [termination](procedure/termination.md)
+- procedure: [round-flow](procedure/round-flow.md), [parallel-coverage](procedure/parallel-coverage.md), [action-discipline](procedure/action-discipline.md), [cross-provider](procedure/cross-provider.md), [recurrence-index](procedure/recurrence-index.md), [escalation](procedure/escalation.md), [termination](procedure/termination.md), [empirical-signal](procedure/empirical-signal.md), [reviewer-model-selection](procedure/reviewer-model-selection.md), [adversarial-full-context-peer](procedure/adversarial-full-context-peer.md)
 - [logs](logs/README.md) — per-project round logs
 
 ## Use

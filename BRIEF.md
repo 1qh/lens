@@ -39,13 +39,22 @@ External claims (CVE, regulation article, benchmark, vendor claim) require sourc
 - Concerns that imply hypothetical code rather than the docs themselves
 - Findings that do not survive adversarial cross-examination (Phase 9)
 - Findings with confidence below medium (forced abstention)
+- Findings already addressed by an explicit non-goal in the docs unless the finding defeats the non-goal's argument explicitly (defeat-the-non-goal rule)
+- Architectural findings without at least one real-world precedent cited (GitHub issue, postmortem, RFC, paper) — purely-internal reasoning is invalid for architecture
+- Cross-doc citations that do not surface a genuine contradiction (anti-circularity)
 
-## Phase 4 — Severity calibration
+## Phase 4 — Severity calibration with risk weighting
 
+Severity tier:
 - **Critical**: causes production outage, compliance breach, security incident, App Store rejection, data loss, or unrecoverable corruption
 - **Major**: causes measurable user pain, significant rework (more than two engineer-weeks), or a scale wall within twelve months of launch
 - **Minor**: real but bounded; team can fix in under a day
 - **Nit**: aesthetic only; disqualified and must be dropped
+
+Risk weighting (per finding, in addition to severity):
+- **Probability** of failure occurring: high / medium / low
+- **Impact** if it occurs: catastrophic / serious / contained
+- **Risk score** = probability × impact, surfaces tail-risk findings (low probability, catastrophic impact) that severity alone misses
 
 ## Phase 5 — Required output structure
 
@@ -65,8 +74,11 @@ Per finding:
 3. **Failure mode** — concrete impact (downtime, cost, churn, fine, hours of rework, scale wall, security breach, regulator action)
 4. **Strongest counter-argument the team could make** — and why that counter-argument still loses
 5. **Severity** — critical / major / minor (nit disqualified)
-6. **Confidence** — high (cited evidence with source) / medium (pattern-based) / low (gut, forced-abstain — drop)
-7. **Concrete fix** — specific revision to a specific doc; if you cannot propose one, drop the finding
+6. **Probability × impact** — high/med/low × catastrophic/serious/contained → risk score
+7. **Confidence** — high (cited evidence with source) / medium (pattern-based) / low (gut, forced-abstain — drop)
+8. **External precedent** — at least one real-world reference (GitHub issue, postmortem, RFC, paper) for any architectural finding; mark "n/a" only for non-architectural findings
+9. **Defeat-the-non-goal** — if docs contain a non-goal addressing this concern, name the non-goal and the argument that defeats it; otherwise mark "no non-goal in docs"
+10. **Concrete fix** — specific revision to a specific doc; if you cannot propose one, drop the finding
 
 One finding per concern. Do not bundle. Findings sharing root cause are merged with the root cause stated as its own meta-finding.
 
@@ -76,9 +88,14 @@ For each scenario, state what fails and cite the passage that fails to address i
 
 [STRESS_TESTS]
 
-## Phase 7 — Premortem
+## Phase 7 — Premortem (three scenarios)
 
-Imagine this project shipped, ran in production for six months, and failed. A retrospective concluded a specific design decision in these docs caused the failure. Name the decision, cite the passage, explain the failure path step by step. If multiple decisions could plausibly cause failure, name the single most likely.
+Imagine this project shipped, ran in production for six months, and failed. Provide three retrospectives, one each for:
+- **Technical failure**: which design decision in the docs caused a technical incident? Name the decision, cite the passage, explain the failure path step by step.
+- **Business failure**: which decision caused users to leave or revenue to collapse? Same format.
+- **Regulatory failure**: which decision caused regulator action, fine, or App Store rejection? Same format.
+
+If a category has no plausible scenario, state "No plausible failure in this category" and justify briefly.
 
 ## Phase 8 — Tarpit detection
 
@@ -106,7 +123,7 @@ If you produced more than five findings at the same severity level, reduce to fi
 
 ## Phase 12 — Required terminal outputs
 
-End with all eight (do not skip):
+End with all nine (do not skip):
 
 1. **Single biggest thing this team is wrong about, in one sentence.**
 2. **Three things to delete from these docs.** Quote each passage to delete.
@@ -115,7 +132,8 @@ End with all eight (do not skip):
 5. **Comparative anchor**: a new engineer ramps on these docs OR on a known-good reference (name it). Which produces better outcomes? Why?
 6. **Plain-English rephrasing**: take your highest-severity finding and restate the impact in language a non-technical PM understands. If you cannot, drop it and pick the next.
 7. **What surprised you**: things you expected to find but did not, things you did not expect but found.
-8. **Self-grade**: rate confidence in this entire review 0-100. State least-confident section and why. Declare any area where you lack domain knowledge — skip or mark its findings low-confidence.
+8. **What I would do differently if I were the team**: alternative-design imagination beyond critique. One paragraph max.
+9. **Self-grade**: rate confidence in this entire review 0-100. State least-confident section and why. Declare any area where you lack domain knowledge — skip or mark its findings low-confidence.
 
 ## Phase 13 — Termination signal
 

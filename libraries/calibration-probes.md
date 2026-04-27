@@ -16,6 +16,7 @@ Calibration probes test whether the reviewer model is competent for the assigned
 - **Wrong-cite probe**: claim that a regulation requires X when it requires Y. Reviewer should catch via external verification.
 - **Stale-version probe**: claim a tool version that does not exist. Reviewer should catch via external verification.
 - **Dead-link probe**: cite a URL that returns 404 if fetched. Reviewer should catch if it actually verifies.
+- **Domain-knowledge probe**: state a known-correct domain fact in the brief and require the reviewer to reason consistent with it. Tests priors, not just rule compliance. If reviewer's findings contradict the known fact, model lacks priors for this scope.
 
 ## Use frequency
 

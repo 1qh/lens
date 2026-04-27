@@ -39,3 +39,7 @@ No fixed cap. Use as many slots as the partition scheme produces. Constraint: ea
 ## Provider mix
 
 If multiple model providers are available (Claude, GPT, Gemini, etc), assign different providers to different slots in a round. Cross-provider blind-spot reduction. See cross-provider.md.
+
+## Adversarial full-context peer slot
+
+Every parallel round includes one slot for the adversarial full-context peer. See adversarial-full-context-peer.md. The peer is paired with an auditor like any primary.

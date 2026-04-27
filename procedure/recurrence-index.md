@@ -33,8 +33,4 @@ Stored in `lens/logs/<project>/recurrence.md` per project. Append-only.
 
 ## Trigger for escalation
 
-If a topic recurs three times despite each prior resolution being applied, escalate:
-- The topic genuinely needs a different design (not a doc-clarity issue)
-- Or the resolution principle itself is wrong
-
-Escalation: spawn a meta-review focused on that topic only.
+Auto-escalation rules in [escalation](escalation.md). Recurrence count three or more on a topic spawns a meta-review focused on that topic.
