@@ -27,7 +27,7 @@ flowchart TD
     PrimaryReport --> AuditPair[Send to auditor agent]
     AuditPair --> AuditReport[Receive auditor verdict per finding]
 
-    AuditReport --> NoConcernsCheck{Primary verdict was "No concerns"?}
+    AuditReport --> NoConcernsCheck{Primary returned no-concerns verdict?}
     NoConcernsCheck -- yes --> PostTerm[Spawn post-terminator]
     NoConcernsCheck -- no --> Merge
 

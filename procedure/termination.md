@@ -7,7 +7,7 @@ When the loop on a project stops.
 ```mermaid
 flowchart LR
     Round[Round produces zero non-nit findings]
-    Round --> NoConcerns{All "No concerns" verdicts survived post-terminator?}
+    Round --> NoConcerns{All no-concerns verdicts survived post-terminator?}
     NoConcerns -- yes --> Counter[Increment terminator counter]
     NoConcerns -- no --> Reset[Counter resets to zero]
     Counter --> Check{Counter ≥ 2?}
