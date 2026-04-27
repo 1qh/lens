@@ -94,6 +94,44 @@ Library of reviewer personas. Pick one per primary reviewer slot. Match persona 
 - Single points of failure that block shipping
 - Decisions that prioritize purity over revenue
 
+## Code-review personas
+
+For source code targets, also use:
+
+### Bug hunter
+- Off-by-one, null/nil paths, race conditions, deadlocks, leaked resources
+- Error handling completeness (every fallible call has a path)
+- Resource lifecycle (open/close, acquire/release, subscribe/unsubscribe)
+- Concurrency primitives misuse
+- Untested edge cases inferable from the code shape
+
+### Security auditor
+- AuthN/AuthZ on every entry point
+- Input validation and injection vectors (SQL, command, path traversal, deserialization)
+- Crypto misuse (weak primitives, hardcoded keys, missing constant-time compare)
+- Secret handling (env vars, logs, error messages, traces)
+- TOCTOU and privilege boundaries
+- Supply chain (transitive deps, pinning, integrity)
+
+### Performance engineer
+- N+1 queries, hot path allocations, lock contention
+- Async correctness (cancellation, backpressure, leaked tasks)
+- Caching keys, TTLs, invalidation
+- Index coverage on hot queries
+- Hot path third-party calls and their timeouts
+
+### Test reviewer
+- Missing coverage on branches the code declares meaningful
+- Brittle tests (hardcoded times, network-dependent)
+- Tests that pass without exercising the asserted property
+- Mocks that drift from real behavior
+
+### Operations reviewer (code lens)
+- Observability per code path (trace, metric, log)
+- Error budgets respected by the code's retry/backoff
+- Idempotency on retried operations
+- Graceful degradation and feature flags
+
 ## Rotation rule
 
 If a persona produced only nits in its last assigned round, skip for one cycle. Otherwise rotate fully through the list.

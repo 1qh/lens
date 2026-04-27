@@ -1,17 +1,25 @@
 # lens
 
-Adversarial fresh-eyes review loop for engineering documentation.
+Adversarial fresh-eyes review loop for any engineering artifact: documentation, code, infrastructure, security posture, performance, test coverage, schemas. Same loop, different scope.
 
 ```mermaid
 flowchart LR
-    Project[Project docs] --> Round[Review round]
+    Target[Project artifact] --> Round[Review round]
     Round --> Reviewer[Fresh-eyes reviewer]
     Reviewer --> Auditor
     Auditor --> Action[Apply fixes / non-goals / known limitations]
-    Action --> Project
+    Action --> Target
     Round --> Recurrence[Recurrence index]
     Recurrence --> Round
 ```
+
+Targets can be:
+- Documentation sets (philosophy, ADRs, architecture, conventions)
+- Source code (find bugs, find gaps, security audit, perf review, test coverage)
+- Infrastructure-as-code (manifests, Helm charts, Terraform)
+- Schemas (DB migrations, proto, OpenAPI)
+- Operational artifacts (runbooks, alert rules, dashboards)
+- Mixed (e.g., code + the doc that describes it, surfacing drift)
 
 Reviewer agents must never read this repo. Loop driver only.
 

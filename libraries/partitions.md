@@ -23,6 +23,33 @@ Same docs, different lens per slot:
 
 Cross-cutting partitions rotate the lens, not the surface.
 
+## By code module (for code targets)
+
+Group source code into disjoint slices:
+- By package or directory tree
+- By bounded context or feature area
+- By layer (data access, domain logic, transport, infra adapters)
+- By criticality (auth + payment + identity vs everything else)
+
+Each slice becomes one reviewer slot with a code-aware persona.
+
+## By concern axis on code
+
+Same code, different lens per slot:
+- Bug hunt
+- Security audit
+- Performance review
+- Test coverage gaps
+- Resource leaks and lifecycles
+- Concurrency correctness
+- Error handling completeness
+- Observability coverage
+- Dependency and supply-chain audit
+
+## Mixed code + docs
+
+Some rounds review a feature's code alongside its describing docs. Drift between the two becomes the finding class. One slot reads only docs; one slot reads only code; auditors compare reports.
+
 ## Periodic full-fresh full-scope
 
-Every N partitioned rounds, run one round with a single reviewer covering the entire doc set, no partition. Catches what disjoint coverage cannot see.
+Every N partitioned rounds, run one round with a single reviewer covering the entire target, no partition. Catches what disjoint coverage cannot see.

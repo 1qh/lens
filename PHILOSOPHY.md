@@ -75,7 +75,7 @@ GitHub renders an older mermaid version than mermaid.live; treat GitHub as groun
 
 - Reviewer agents must never see this repo. Loop driver only.
 - Every confirmed finding resolves into fix, non-goal, known-limitation, or deferred-with-trigger. No silent skip.
-- Same concern is never re-litigated. If it recurs, the doc clarity failed; rewrite the doc, do not re-debate.
+- Same concern is never re-litigated. If it recurs, the artifact clarity failed; rewrite the artifact, do not re-debate. (For code targets: the artifact is the code or its test/comment; for doc targets: the doc text.)
 - Commit messages and project docs never reveal loop awareness.
 - "No concerns" is a respected outcome. Manufactured findings are forbidden.
 

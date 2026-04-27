@@ -29,12 +29,28 @@ After reading, you have full strategy context. Drive a round.
 - "review book" / "review <project name>"
 - "continue the loop"
 - "start a fresh round for <project>"
+- "find bugs in <code path>"
+- "audit security on <project>"
+- "review the migrations under <path>"
+- "find gaps in <subsystem>"
 
-If the project path is not stated, ask. Lens reviews a project repo somewhere on disk. The canonical example project is `~/tc/book`.
+If the project path is not stated, ask. Lens reviews any artifact on disk. The canonical example is `~/tc/book` (a doc set).
+
+## Target types
+
+Lens runs the same loop on any of:
+- Documentation set
+- Source code (bug hunt, gap finding, security audit, perf review, test coverage audit)
+- Infrastructure-as-code (manifests, Helm, Terraform)
+- Schemas (DB migrations, proto, OpenAPI)
+- Operational artifacts (runbooks, alert rules, dashboards)
+- Mixed (code + its describing docs, to surface drift)
+
+Scope in BRIEF is filled with file paths or directories of any of these types. Persona, theme, stress-tests are picked to match the target.
 
 ## Project prerequisites
 
-The target project must have its own doc set with concept-level rules (PHILOSOPHY-style), system view (ARCHITECTURE-style), decisions (ADR-style). If the project has no review-able docs, lens has nothing to do; tell the user.
+The target must contain artifacts the reviewer can read. For doc reviews: the doc set. For code reviews: the source files in scope. For mixed: both. If the artifact set is empty or unreadable, lens has nothing to do; tell the user.
 
 ## First round vs continuing round
 
