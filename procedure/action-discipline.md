@@ -51,6 +51,12 @@ A re-raised concern that was previously resolved means the resolution text is no
 
 Never in a separate review-concerns log inside the project repo. That betrays loop awareness.
 
-## Mandatory delete-or-non-goal per round
+## Subtractive pressure per round
 
-Every round produces at least one deletion or one non-goal addition. Counter for doc bloat.
+Each round attempts one deletion or one non-goal addition. Counter for monotonic doc growth.
+
+Not a hard mandate. Manufactured subtractions are forbidden under the same rule that forbids manufactured findings. If a round has genuinely nothing earning removal and no non-goal honestly defeats a re-raise pattern, log "no subtraction this round, rationale: X" in the round log. Same vacuous-criterion shape as calibration probes.
+
+Every N rounds (default 5) the round's primary theme is `Pure deletion round` from `libraries/themes.md`. Batches honest subtraction instead of forcing one-per-round.
+
+Bloat signal tracked in `empirical-signal.md` (paragraph count, ADR count, total bytes). Crossing a threshold forces a deletion-themed round regardless of cadence.
