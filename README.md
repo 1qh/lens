@@ -21,28 +21,39 @@ Reviewer agents must never read this repo. Loop driver only.
 mindmap
   root((lens))
     Foundations
-      [PHILOSOPHY](PHILOSOPHY.md)
-      [BRIEF](BRIEF.md)
-      [AUDIT](AUDIT.md)
-      [POST-TERMINATOR](POST-TERMINATOR.md)
-      [META-REVIEW](META-REVIEW.md)
-      [COMMIT-HYGIENE](COMMIT-HYGIENE.md)
+      PHILOSOPHY
+      BRIEF
+      AUDIT
+      POST-TERMINATOR
+      META-REVIEW
+      COMMIT-HYGIENE
     Libraries
-      [personas](libraries/personas.md)
-      [themes](libraries/themes.md)
-      [stress-tests](libraries/stress-tests.md)
-      [partitions](libraries/partitions.md)
-      [calibration-probes](libraries/calibration-probes.md)
+      personas
+      themes
+      stress-tests
+      partitions
+      calibration-probes
     Procedure
-      [round-flow](procedure/round-flow.md)
-      [parallel-coverage](procedure/parallel-coverage.md)
-      [action-discipline](procedure/action-discipline.md)
-      [cross-provider](procedure/cross-provider.md)
-      [recurrence-index](procedure/recurrence-index.md)
-      [termination](procedure/termination.md)
+      round-flow
+      parallel-coverage
+      action-discipline
+      cross-provider
+      recurrence-index
+      termination
     Logs
-      [logs/](logs/README.md)
+      project rounds
 ```
+
+Files:
+- [PHILOSOPHY](PHILOSOPHY.md) — start here
+- [BRIEF](BRIEF.md) — primary reviewer brief template
+- [AUDIT](AUDIT.md) — auditor brief
+- [POST-TERMINATOR](POST-TERMINATOR.md) — verdict-disprove brief
+- [META-REVIEW](META-REVIEW.md) — strategy meta-review brief
+- [COMMIT-HYGIENE](COMMIT-HYGIENE.md) — commit message rules
+- libraries: [personas](libraries/personas.md), [themes](libraries/themes.md), [stress-tests](libraries/stress-tests.md), [partitions](libraries/partitions.md), [calibration-probes](libraries/calibration-probes.md)
+- procedure: [round-flow](procedure/round-flow.md), [parallel-coverage](procedure/parallel-coverage.md), [action-discipline](procedure/action-discipline.md), [cross-provider](procedure/cross-provider.md), [recurrence-index](procedure/recurrence-index.md), [termination](procedure/termination.md)
+- [logs](logs/README.md) — per-project round logs
 
 ## Use
 

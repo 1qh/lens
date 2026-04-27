@@ -34,30 +34,26 @@ fi
 tmpdir="$(mktemp -d)"
 trap 'rm -rf "$tmpdir"' EXIT
 
+# extract all mermaid blocks across all files in a single awk pass with a global counter
+awk -v dir="$tmpdir" '
+  FNR==1 {idx=0; inblock=0}
+  /^```mermaid[[:space:]]*$/ {inblock=1; idx++; seq++; out=sprintf("%s/block-%d.mmd", dir, seq); print seq " " FILENAME ":" idx > (dir "/index"); next}
+  /^```[[:space:]]*$/ && inblock {inblock=0; next}
+  inblock {print > out}
+' "${files[@]}"
+
+puppeteer_cfg=""
+[[ -f "$REPO_ROOT/.puppeteer.json" ]] && puppeteer_cfg="-p $REPO_ROOT/.puppeteer.json"
+
 fail=0
 total=0
-seq=0
 
-for f in "${files[@]}"; do
-  [[ -f "$f" ]] || continue
-
-  # extract mermaid blocks into numbered files in tmpdir
-  awk -v dir="$tmpdir" -v file="$f" '
-    /^```mermaid[[:space:]]*$/ {inblock=1; idx++; out=sprintf("%s/block-%s.mmd", dir, ++seq); origin[seq]=file ":" idx; print "ORIGIN " seq " " file ":" idx > (dir "/index"); next}
-    /^```[[:space:]]*$/ && inblock {inblock=0; next}
-    inblock {print > out}
-  ' "$f"
-done
-
-# render each block
 for block in "$tmpdir"/block-*.mmd; do
   [[ -f "$block" ]] || continue
   total=$((total + 1))
   seq_num="$(basename "$block" .mmd | sed 's/block-//')"
-  origin="$(grep "^ORIGIN $seq_num " "$tmpdir/index" 2>/dev/null | awk '{print $3}')"
+  origin="$(awk -v n="$seq_num" '$1==n {print $2; exit}' "$tmpdir/index" || echo "?")"
   out_svg="${block%.mmd}.svg"
-  puppeteer_cfg=""
-  [[ -f "${REPO_ROOT:-.}/.puppeteer.json" ]] && puppeteer_cfg="-p ${REPO_ROOT:-.}/.puppeteer.json"
   if ! mmdc $puppeteer_cfg -i "$block" -o "$out_svg" -q 2>"$block.err" >/dev/null; then
     fail=$((fail + 1))
     echo "FAIL: $origin"
