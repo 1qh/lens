@@ -1,36 +1,30 @@
 # recurrence-index
 
-Cross-round, cross-project tracking of repeated concerns. Signals doc clarity gaps and process gaps.
+Cross-round tracking of repeated concerns. Recurrence after a resolution = doc clarity failure.
 
 ## What gets indexed
 
-Per concern that appeared in any round:
-- Topic (concept-level, not a quote)
+Per topic that appeared in any round:
+- Topic name (concept-level, not a quote)
 - Owning doc
 - First-raised round
-- Resolution applied (fix / non-goal / limitation / deferred)
-- Subsequent rounds where same topic reappeared
+- Resolution applied
+- Subsequent rounds where the same topic reappeared
 
-## Why
+Stored append-only in `lens/logs/<project>/recurrence.md`.
 
-If a topic recurs after a non-goal was added, the non-goal text is not unmissable. The doc must be rewritten until the same fresh-eyes reviewer cannot reach the same concern.
-
-## Index storage
-
-Stored in `lens/logs/<project>/recurrence.md` per project. Append-only.
-
-## Index format
+## Format
 
 ```
 ## <topic name>
 
 - Owning doc: <doc>
-- First raised: <round identifier>
+- First raised: <round id>
 - Initial resolution: <fix / non-goal / limitation / deferred>
-- Recurrences: <list of round identifiers where same topic reappeared, with auditor verdicts>
-- Action on each recurrence: <doc-clarity rewrite, or escalation>
+- Recurrences: <list of round ids with auditor verdicts>
+- Action on each: <doc-clarity rewrite or escalation>
 ```
 
-## Trigger for escalation
+## Escalation
 
-Auto-escalation rules in [escalation](escalation.md). Recurrence count three or more on a topic spawns a meta-review focused on that topic.
+Recurrence ≥ 3 triggers meta-review on that topic. See [escalation](escalation.md).

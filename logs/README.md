@@ -1,8 +1,6 @@
 # logs
 
-Per-project round logs and recurrence indexes. One subdirectory per project.
-
-## Structure
+Per-project round logs. One subdirectory per project.
 
 ```
 logs/
@@ -10,53 +8,36 @@ logs/
     rounds.md
     recurrence.md
     provider-bias.md
+    digest.md
 ```
 
-## rounds.md format
-
-Append per round:
-
-```
-## <round identifier>
+## rounds.md per round
 
 - Date
-- Mode: single / parallel / full-fresh
-- Persona(s)
-- Scope(s)
-- Theme(s)
-- Stress-tests applied
-- Variant: plain / steel-man / adversarial
-- Calibration probes: yes / no
+- Mode (single / parallel / full-fresh)
+- Persona(s), scope(s), theme(s), stress-tests, variant
+- Calibration probes (yes / no)
 - Provider(s)
-- Severity counts: critical / major / minor (nits dropped)
-- Outcomes: fixes / non-goals / limitations / deferred
-- Silent strengths: topics no reviewer raised
+- Severity counts (critical / major / minor; nits dropped)
+- Outcomes (fixes / non-goals / limitations / deferred)
+- Silent strengths (topics no reviewer raised)
 - Notes for next round
-```
 
-## recurrence.md format
+## recurrence.md
 
-See procedure/recurrence-index.md.
+Format in [recurrence-index](../procedure/recurrence-index.md).
 
-## provider-bias.md format
-
-Append per provider per round:
-
-```
-## <provider> — <round identifier>
+## provider-bias.md per provider per round
 
 - Findings produced
-- Findings confirmed by auditor
-- Findings disqualified
-- Findings flagged fabrication-risk
+- Confirmed by auditor / disqualified / fabrication-risk
 - Audit-pass rate
-- Notable bias direction observed
-```
+- Notable bias direction
+
+## digest.md
+
+Round-output digests per [convergence](../procedure/convergence.md).
 
 ## Privacy
 
-These logs are private project state for the loop driver. They are stored in lens (this repo), not in the project repo. Reviewer agents must not be given access to lens.
-
-If lens is public, logs may still be public — they reveal loop existence but do not name specific findings in a way that anchors a future reviewer (recurrence index uses topic names, not direct quotes from project docs).
-
-If a project's loop logs would reveal sensitive project content, store them locally and gitignore that subdirectory in lens.
+These logs are private state for the loop driver. Reviewer agents must not have access. If lens is public, logs may still be public because they use topic names not direct project doc quotes. If a project's logs would expose sensitive project content, store locally and gitignore that subdirectory.

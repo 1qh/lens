@@ -1,37 +1,29 @@
 # termination
 
-When the loop on a project stops.
-
-## Signal
-
 ```mermaid
 flowchart LR
     Round[Round produces zero non-nit findings]
-    Round --> NoConcerns{All no-concerns verdicts survived post-terminator?}
-    NoConcerns -- yes --> Counter[Increment terminator counter]
-    NoConcerns -- no --> Reset[Counter resets to zero]
+    Round --> NC{All no-concerns verdicts survived post-terminator?}
+    NC -- yes --> Counter[Increment terminator counter]
+    NC -- no --> Reset[Counter resets]
     Counter --> Check{Counter ≥ 2?}
     Check -- yes --> Provider{Verdicts span ≥ 2 providers?}
-    Check -- no --> Continue[Continue loop]
+    Check -- no --> Continue[Continue]
     Provider -- yes --> Terminate[Loop complete]
     Provider -- no --> Continue
     Reset --> Continue
 ```
 
-## Conditions for termination
+## Conditions
 
 All required:
-- Two consecutive rounds produce only no-concerns or only nit-level findings
-- Each no-concerns verdict in those rounds survived its post-terminator pass
+- Two consecutive rounds produce only no-concerns or only nits
+- Each no-concerns verdict survived [post-terminator](../POST-TERMINATOR.md)
 - Verdicts span at least two model providers
-- Most recent calibration probe was caught by reviewers — model is competent
+- Most recent calibration probe caught — reviewer model is competent
 
-If any condition fails, counter resets and loop continues.
+Any failure resets counter.
 
 ## After termination
 
-The doc set is declared self-defending for the current scope.
-
-If scope is later extended (new ADRs, new features, new docs), termination must be re-earned for the new scope.
-
-Termination is not permanent. Periodic verification rounds (e.g., quarterly) re-test the doc set against fresh reviewers. If new concerns surface, loop resumes.
+Doc set is declared self-defending for current scope. Scope extension (new ADRs, features, docs) re-earns termination. Periodic verification rounds (e.g., quarterly) re-test against fresh reviewers; new concerns resume the loop.

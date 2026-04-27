@@ -1,54 +1,38 @@
 # fact-discipline
 
-Process for keeping reviewer findings backed by real evidence so verification by the loop driver shrinks toward zero.
+Layered enforcement keeps reviewer findings backed by real evidence so loop-driver verification shrinks toward zero.
 
 ```mermaid
 flowchart LR
-    Brief[Brief states evidence rules] --> Primary
-    Primary[Primary reviewer] --> Tools[Required: use web tools to verify]
+    Brief[Evidence rules in BRIEF] --> Primary
+    Primary[Primary reviewer] --> Tools[Web tools to verify]
     Tools --> Report[Findings with URL + inline excerpt]
-    Report --> A1[Rule auditor checks compliance]
-    Report --> A2[Fact auditor fetches URLs and verifies]
+    Report --> A1[Rule auditor]
+    Report --> A2[Fact auditor fetches URLs]
     A1 --> Merge
     A2 --> Merge
-    Merge --> Recurrence[Track fabrication signals]
-    Recurrence --> Calibration[Planted-wrong-evidence next round if fabrication signal high]
+    Merge --> Calibration[Planted-wrong-evidence probe next round if fabrication signal high]
 ```
 
-## Layered enforcement
+## Failure mode → catching layer
 
-- Brief mandates verifiable inline evidence per finding.
-- Primary uses web tools at review time; tool calls logged.
-- Two-auditor pass per primary: rules + facts.
-- Fact auditor fetches every URL.
-- Fabrication-risk findings exclude persona+model combination next round.
-- Calibration probes occasionally plant deliberately wrong evidence to test fact-discipline directly.
-
-## Failure modes the layers catch
-
-| Failure mode | Layer that catches it |
+| Failure | Layer |
 |---|---|
-| Reviewer guesses without verifying | Brief evidence rules + auditor checks excerpt presence |
-| Reviewer fabricates URL | Fact auditor's URL fetch |
-| URL is real but does not support claim | Fact auditor's excerpt verification |
-| Reviewer cites correct source but wrong line | Pinpoint citation rule + fact auditor |
-| Reviewer extrapolates beyond cited evidence | Generalization rule + auditor |
-| Reviewer's model lacks priors for scope | Domain-knowledge probe + planted-wrong-evidence probe |
+| Guesses without verifying | Brief rules + auditor excerpt check |
+| Fabricates URL | Fact auditor URL fetch |
+| Real URL but doesn't support claim | Fact auditor excerpt verification |
+| Correct source, wrong line | Pinpoint-citation rule + fact auditor |
+| Extrapolates beyond cited evidence | Generalization rule + auditor |
+| Model lacks priors for scope | Domain-knowledge + planted-wrong-evidence probes |
 
-## Outcome budget
+## Healthy round
 
-A round is healthy when:
 - Fact-confirmed rate above 90%
 - Fabrication-risk rate below 5%
-- Tool-use telemetry shows primary actually called web tools when external claims were made
+- Tool-use telemetry shows primary called web tools when external claims were made
 
-Rates outside these bands trigger:
-- Persona+model exclusion for next round
-- Brief tightening if pattern persists
-- Meta-review escalation if pattern persists across multiple rounds
+Out-of-band triggers persona+model exclusion next round, brief tightening if persistent, meta-review escalation if persistent across multiple rounds.
 
-## Loop driver responsibility
+## Loop driver
 
-Loop driver does not personally fact-check findings. Loop driver inspects the merge output (findings that survived both auditors). Verification work is consumed by the auditor pass; loop driver only audits the auditors via meta-review periodically.
-
-This is the path to near-zero personal verification.
+Does not personally fact-check. Inspects merge output (findings that survived both auditors). Verification consumed by auditor pass. Loop driver only audits the auditors via periodic meta-review.
