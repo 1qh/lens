@@ -18,7 +18,7 @@ Output a single finding (the strongest you can make) or "Verdict confirmed".
 
 ```mermaid
 flowchart LR
-    Round[Round produces "No concerns"] --> PostTerm[Spawn post-terminator]
+    Round[Round produces no-concerns verdict] --> PostTerm[Spawn post-terminator]
     PostTerm --> Outcome
     Outcome --> Disproved[Found concern → loop continues]
     Outcome --> Confirmed[Verdict confirmed → terminator stands]
