@@ -1,0 +1,16 @@
+name: check-mermaid
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - run: npm i -g @mermaid-js/mermaid-cli
+      - run: chmod +x scripts/check-mermaid.sh && ./scripts/check-mermaid.sh

@@ -1,0 +1,6 @@
+pre-commit:
+  parallel: true
+  commands:
+    mermaid:
+      glob: "*.md"
+      run: ./scripts/check-mermaid.sh --staged

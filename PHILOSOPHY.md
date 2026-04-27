@@ -34,7 +34,7 @@ mindmap
       Prose ≤ 2 sentences
       Concept names only, no code specifics
       No numbering anywhere
-      Mermaid render-safe on GitHub no br tags no inner quotes
+      Mermaid render-safe enforced in CI
 ```
 
 ## Decision filter for any change to lens itself
@@ -53,6 +53,22 @@ flowchart TD
     D -- yes --> Y
     C -- yes --> Y
 ```
+
+## Mermaid render-safe rules
+
+GitHub renders an older mermaid version than mermaid.live; treat GitHub as ground truth. Render-check enforced in CI; pre-commit hook blocks bad blocks locally.
+
+- No `<br/>` in node labels. Collapse to spaces or split into multiple shorter nodes.
+- No inner double quotes inside any node shape. Rephrase without quotes.
+- No raw special chars (`&`, `#`, `<`, `>`, `(`, `)`, `,`, `:`, `;`) in unquoted labels.
+- No reserved keywords as node IDs.
+- No spaces in node IDs. Spaces allowed only in labels.
+- Edge labels need spaces around dashes.
+- Subgraph titles with spaces require explicit `id [Display Name]` form.
+- Mindmap root must be `((root))`; other shapes break.
+- Sequence participant names with spaces require `participant ID as Display Name`.
+- `stateDiagram-v2` and `stateDiagram` have different syntax; do not mix.
+- HTML entities other than basic ones render unevenly. Avoid.
 
 ## Inviolable rules
 
