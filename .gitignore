@@ -2,3 +2,6 @@
 .env
 .env.*
 *.local.md
+
+logs/*/
+!logs/README.md
