@@ -66,6 +66,7 @@ GitHub renders an older mermaid version than mermaid.live; treat GitHub as groun
 - Edge labels need spaces around dashes.
 - Subgraph titles with spaces require explicit `id [Display Name]` form.
 - Mindmap root must be `((root))`; other shapes break.
+- No markdown links inside any mermaid block. Mermaid parses node text as labels, not markdown.
 - Sequence participant names with spaces require `participant ID as Display Name`.
 - `stateDiagram-v2` and `stateDiagram` have different syntax; do not mix.
 - HTML entities other than basic ones render unevenly. Avoid.
