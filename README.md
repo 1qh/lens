@@ -15,12 +15,15 @@ flowchart LR
 
 Reviewer agents must never read this repo. Loop driver only.
 
+If you (Claude, loop driver) just landed in this repo, start with [OPERATING](OPERATING.md). Read every file yourself; do not spawn a subagent to summarize.
+
 ## Map
 
 ```mermaid
 mindmap
   root((lens))
     Foundations
+      OPERATING
       PHILOSOPHY
       BRIEF
       AUDIT
@@ -51,7 +54,8 @@ mindmap
 ```
 
 Files:
-- [PHILOSOPHY](PHILOSOPHY.md) — start here
+- [OPERATING](OPERATING.md) — start here if running a round
+- [PHILOSOPHY](PHILOSOPHY.md) — values
 - [BRIEF](BRIEF.md) — primary reviewer brief template
 - [AUDIT](AUDIT.md) — auditor brief
 - [POST-TERMINATOR](POST-TERMINATOR.md) — verdict-disprove brief
@@ -63,4 +67,4 @@ Files:
 
 ## Use
 
-Start with [PHILOSOPHY](PHILOSOPHY.md). Then [BRIEF](BRIEF.md). Then run a round per [round-flow](procedure/round-flow.md).
+Read [OPERATING](OPERATING.md) first. Then read every other file in this repo yourself. Then run a round.
