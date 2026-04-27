@@ -22,11 +22,9 @@ flowchart LR
 
 All required:
 - Two consecutive rounds produce only no-concerns or only nit-level findings
-- At least one of the two terminating rounds is full or deep mode
 - Each no-concerns verdict in those rounds survived its post-terminator pass
 - Verdicts span at least two model providers
 - Most recent calibration probe was caught by reviewers — model is competent
-- Cost-per-confirmed-finding for the last two rounds exceeds a threshold (diminishing returns explicit)
 
 If any condition fails, counter resets and loop continues.
 

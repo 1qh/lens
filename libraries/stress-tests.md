@@ -1,6 +1,6 @@
 # stress-tests
 
-Per-round stress-test scenario library. In light mode pick one matched to round theme. In full mode pick 2-3. Quality of choice beats quantity. Each scenario forces the reviewer to imagine concrete failure.
+Per-round stress-test scenario library. Pick 2-3 per round, matched to round theme. Each scenario forces the reviewer to imagine concrete failure.
 
 - You ship Monday. What fails first?
 - A regulator audits next week. Which citation kills the team?
