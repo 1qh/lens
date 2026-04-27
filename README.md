@@ -35,6 +35,8 @@ mindmap
       calibration-probes
     Procedure
       round-flow
+      round-modes
+      change-aware-scoping
       parallel-coverage
       action-discipline
       cross-provider
@@ -57,7 +59,7 @@ Files:
 - [META-REVIEW](META-REVIEW.md) — strategy meta-review brief
 - [COMMIT-HYGIENE](COMMIT-HYGIENE.md) — commit message rules
 - libraries: [personas](libraries/personas.md), [themes](libraries/themes.md), [stress-tests](libraries/stress-tests.md), [partitions](libraries/partitions.md), [calibration-probes](libraries/calibration-probes.md)
-- procedure: [round-flow](procedure/round-flow.md), [parallel-coverage](procedure/parallel-coverage.md), [action-discipline](procedure/action-discipline.md), [cross-provider](procedure/cross-provider.md), [recurrence-index](procedure/recurrence-index.md), [escalation](procedure/escalation.md), [termination](procedure/termination.md), [empirical-signal](procedure/empirical-signal.md), [reviewer-model-selection](procedure/reviewer-model-selection.md), [adversarial-full-context-peer](procedure/adversarial-full-context-peer.md), [fact-discipline](procedure/fact-discipline.md)
+- procedure: [round-flow](procedure/round-flow.md), [round-modes](procedure/round-modes.md), [change-aware-scoping](procedure/change-aware-scoping.md), [parallel-coverage](procedure/parallel-coverage.md), [action-discipline](procedure/action-discipline.md), [cross-provider](procedure/cross-provider.md), [recurrence-index](procedure/recurrence-index.md), [escalation](procedure/escalation.md), [termination](procedure/termination.md), [empirical-signal](procedure/empirical-signal.md), [reviewer-model-selection](procedure/reviewer-model-selection.md), [adversarial-full-context-peer](procedure/adversarial-full-context-peer.md), [fact-discipline](procedure/fact-discipline.md)
 - [logs](logs/README.md) — per-project round logs
 
 ## Use

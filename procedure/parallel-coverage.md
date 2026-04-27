@@ -42,4 +42,4 @@ If multiple model providers are available (Claude, GPT, Gemini, etc), assign dif
 
 ## Adversarial full-context peer slot
 
-Every parallel round includes one slot for the adversarial full-context peer. See adversarial-full-context-peer.md. The peer is paired with an auditor like any primary.
+Periodic, not every round. Include one peer slot in deep-mode rounds and roughly every Nth full-mode round. Light-mode rounds skip the peer. See adversarial-full-context-peer.md.

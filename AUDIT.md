@@ -42,7 +42,11 @@ Also audit terminal outputs and self-grade structure.
 Output counts: confirmed, disqualified, fabrication-risk.
 ```
 
-## Pass two — fact-check auditor brief
+## Pass two — fact-check auditor brief (conditional)
+
+Skip pass two entirely if the primary's report has zero findings with external claims. The rule auditor's CONFIRMED verdict on a finding without external claims is sufficient.
+
+
 
 ```
 You are a fact-check reviewer. You have ZERO context about the project. Your only job is to verify external claims in a peer reviewer's report by fetching the cited sources and checking they actually support the claims.
