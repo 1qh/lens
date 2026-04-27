@@ -17,6 +17,7 @@ Calibration probes test whether the reviewer model is competent for the assigned
 - **Stale-version probe**: claim a tool version that does not exist. Reviewer should catch via external verification.
 - **Dead-link probe**: cite a URL that returns 404 if fetched. Reviewer should catch if it actually verifies.
 - **Domain-knowledge probe**: state a known-correct domain fact in the brief and require the reviewer to reason consistent with it. Tests priors, not just rule compliance. If reviewer's findings contradict the known fact, model lacks priors for this scope.
+- **Planted-wrong-evidence probe**: insert a fabricated URL or wrong regulation citation into the brief or the project docs. If reviewer accepts the planted evidence and uses it in a finding, the model has no fact-checking instinct. If reviewer challenges or ignores it, fact-discipline is healthy.
 
 ## Use frequency
 

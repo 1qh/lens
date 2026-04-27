@@ -25,7 +25,12 @@ Trace every described data flow through every doc that touches it. If two docs d
 
 Do not invent code, files, or implementations the docs do not describe. Review only the docs.
 
-External claims (CVE, regulation article, benchmark, vendor claim) require source URL or specific reference inline. Unsourced external claims are invalid.
+External evidence rules (mandatory):
+- Every external claim requires a working source URL inline.
+- Every external claim requires the exact relevant excerpt from the source quoted inline (paraphrasing not enough; show the actual words that back the claim).
+- Generalizations require separate evidence per step. "X uses Y, therefore Z must use Y" is two claims; cite for both.
+- Numeric claims (versions, dates, percentages, throughput numbers, regulation article numbers) require pinpoint citation — exact section, page, or line in the source.
+- Use available web tools (search, fetch) to verify before claiming. Findings that rely on external evidence without an inline excerpt from the actual source are invalid.
 
 ## Phase 3 — Disqualifiers (NOT a finding)
 
@@ -42,6 +47,9 @@ External claims (CVE, regulation article, benchmark, vendor claim) require sourc
 - Findings already addressed by an explicit non-goal in the docs unless the finding defeats the non-goal's argument explicitly (defeat-the-non-goal rule)
 - Architectural findings without at least one real-world precedent cited (GitHub issue, postmortem, RFC, paper) — purely-internal reasoning is invalid for architecture
 - Cross-doc citations that do not surface a genuine contradiction (anti-circularity)
+- External claims without an inline excerpt from the actual source (verifiable-evidence rule)
+- Generalizations across cases without separate evidence for each step
+- Numeric claims without pinpoint citation in the source
 
 ## Phase 4 — Severity calibration with risk weighting
 
@@ -76,7 +84,7 @@ Per finding:
 5. **Severity** — critical / major / minor (nit disqualified)
 6. **Probability × impact** — high/med/low × catastrophic/serious/contained → risk score
 7. **Confidence** — high (cited evidence with source) / medium (pattern-based) / low (gut, forced-abstain — drop)
-8. **External precedent** — at least one real-world reference (GitHub issue, postmortem, RFC, paper) for any architectural finding; mark "n/a" only for non-architectural findings
+8. **External precedent** — at least one real-world reference (GitHub issue, postmortem, RFC, paper) for any architectural finding; mark "n/a" only for non-architectural findings. Include the source URL plus the exact relevant excerpt quoted inline.
 9. **Defeat-the-non-goal** — if docs contain a non-goal addressing this concern, name the non-goal and the argument that defeats it; otherwise mark "no non-goal in docs"
 10. **Concrete fix** — specific revision to a specific doc; if you cannot propose one, drop the finding
 
