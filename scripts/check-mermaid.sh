@@ -9,6 +9,8 @@
 
 set -euo pipefail
 
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+
 if ! command -v mmdc >/dev/null 2>&1; then
   echo "mmdc not found. install: brew install mermaid-cli" >&2
   exit 2
@@ -54,7 +56,9 @@ for block in "$tmpdir"/block-*.mmd; do
   seq_num="$(basename "$block" .mmd | sed 's/block-//')"
   origin="$(grep "^ORIGIN $seq_num " "$tmpdir/index" 2>/dev/null | awk '{print $3}')"
   out_svg="${block%.mmd}.svg"
-  if ! mmdc -i "$block" -o "$out_svg" -q 2>"$block.err" >/dev/null; then
+  puppeteer_cfg=""
+  [[ -f "${REPO_ROOT:-.}/.puppeteer.json" ]] && puppeteer_cfg="-p ${REPO_ROOT:-.}/.puppeteer.json"
+  if ! mmdc $puppeteer_cfg -i "$block" -o "$out_svg" -q 2>"$block.err" >/dev/null; then
     fail=$((fail + 1))
     echo "FAIL: $origin"
     sed 's/^/  /' "$block.err" >&2
