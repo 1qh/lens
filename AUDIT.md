@@ -53,7 +53,9 @@ For each finding containing external evidence (URL + excerpt):
 - Regulation citations: verify article number and text.
 - Version claims: verify version exists and the claim about it is supported.
 
-Output per external claim one of: FACT-CONFIRMED, FACT-WRONG, FACT-UNVERIFIABLE, FACT-FABRICATED.
+Walk the [fact-discipline](procedure/fact-discipline.md) fallback ladder before declaring a verdict: WebFetch direct → Wayback snapshot → WebSearch for canonical excerpt or alternate mirror.
+
+Output per external claim one of: FACT-CONFIRMED, FACT-WRONG, FACT-UNVERIFIABLE-NO-SOURCE, FACT-UNVERIFIABLE-TOOL. The TOOL variant means every fetch attempt returned a tool-shape failure (4xx, JS shell, empty body) — does not drop the finding; loop driver does a one-time manual backstop. The NO-SOURCE variant means ladder completed but no fetch ever produced the excerpt — treated as suspected fabrication.
 
 Output counts.
 
@@ -66,9 +68,9 @@ Each auditor receives the primary's full report and read-only access to the same
 
 ## Merge rule
 
-A finding merges into the round's confirmed set only if rule auditor returns CONFIRMED AND fact auditor returns FACT-CONFIRMED for every external claim (or finding has none).
+A finding merges into the round's confirmed set only if rule auditor returns CONFIRMED AND every external claim is one of: FACT-CONFIRMED, or FACT-UNVERIFIABLE-TOOL with loop-driver manual backstop recorded. Findings without external claims merge on rule-CONFIRMED alone.
 
-FACT-WRONG is itself a meta-finding: reviewer fabricated. Exclude that persona+model next round.
+FACT-WRONG and FACT-UNVERIFIABLE-NO-SOURCE drop the finding and exclude the producing persona+model next round.
 
 ## Tool-use telemetry
 

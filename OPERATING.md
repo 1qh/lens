@@ -188,7 +188,7 @@ For each slot, one Agent tool call. All parallel calls in a single message:
 - `description`: short label like "Auth scope review" or "Fact-check primary 3"
 - `prompt`: the filled brief content as a single string. Include all phases, the persona block, the chosen theme, the stress tests, and any variant prefix.
 
-Auditors receive the primary's report inside their prompt. Pass the primary's report as a section of the prompt body.
+Auditors receive the primary's report inside their prompt. Pass the primary's report **verbatim, in full**, as a section of the prompt body. Do not paraphrase, summarize, or excerpt the primary's findings — the auditor's verbatim-quote check fires on what's in the prompt, not on what the docs contain. A summarized primary report makes every finding fail the rule auditor's "verbatim quote present?" check and forces a costly retry.
 
 Post-terminator and meta-review use the same Agent tool with the corresponding brief from POST-TERMINATOR or META-REVIEW.
 
@@ -219,6 +219,8 @@ Replace `[PERSONA]`, `[SCOPE]`, `[THEME]`, `[STRESS_TESTS]` in BRIEF accordingly
 - **Mentioning loop in commits.** Hygiene-banned. Commit reads as if first contact.
 - **Skipping the round digest.** Convergence depends on it. Write per [procedure/convergence](procedure/convergence.md).
 - **Personally fact-checking after auditors.** Wastes effort. Trust the auditor pair.
+- **Sending the auditor a paraphrased primary report.** The auditor's verbatim-quote check fires on the prompt body. A summary collapses every finding to FABRICATION-RISK on rule audit. Pass the primary's report verbatim, in full.
+- **Treating tool-side fact-auditor failures as finding fabrication.** WebFetch returning 404 / empty / JS-rendered-shell against a real source is a tooling limit, not reviewer fabrication. See [fact-discipline](procedure/fact-discipline.md) fallback ladder.
 
 ## Autonomous workflow
 
