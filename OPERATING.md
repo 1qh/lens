@@ -34,7 +34,7 @@ After reading, you have full strategy context. Drive a round.
 - "review the migrations under <path>"
 - "find gaps in <subsystem>"
 
-If the project path is not stated, ask. Lens reviews any artifact on disk. The canonical example is `~/tc/book` (a doc set).
+If the project path is not stated, ask. Lens reviews any artifact on disk. The canonical example is `~/book` (a doc set).
 
 ## Target types
 
